@@ -1,5 +1,6 @@
 import { Get, Param, Controller } from "@nestjs/common"
-import CatService from "../services/cat"
+
+import CatService from "@services/cat"
 
 @Controller("cat")
 export default class CatController {

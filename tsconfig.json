@@ -13,7 +13,11 @@
         "paths": {
             "src": ["src"],
             "@controllers/*": ["src/controllers/*"],
-            "@services/*": ["src/services/*"]
+            "@services/*": ["src/services/*"],
+            "@pipes/*": ["src/pipes/*"],
+            "@guards/*": ["src/guards/*"],
+            "@interceptors/*": ["src/interceptors/*"],
+            "@decorators/*": ["src/decorators/*"]
         }
     },
     "exclude": ["node_modules", "dist"]
