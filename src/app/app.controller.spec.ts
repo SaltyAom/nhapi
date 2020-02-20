@@ -1,16 +1,32 @@
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test } from '@nestjs/testing'
+import {
+    NestFastifyApplication,
+    FastifyAdapter,
+} from '@nestjs/platform-fastify'
 
-import AppController from 'src/app/app.controller'
-import AppService from 'src/app/app.service'
+import AppController from './app.controller'
+
+import AppService from './app.service'
 
 describe('AppController', () => {
-    let app: TestingModule
+    let app: NestFastifyApplication
 
     beforeAll(async () => {
-        app = await Test.createTestingModule({
+        const module = await Test.createTestingModule({
             controllers: [AppController],
             providers: [AppService],
-        }).compile()
+        })
+            .compile()
+
+        app = module.createNestApplication<NestFastifyApplication>(
+            new FastifyAdapter(),
+        )
+
+        await app.init()
+        await app
+            .getHttpAdapter()
+            .getInstance()
+            .ready()
     })
 
     describe('getHello', () => {
@@ -18,5 +34,9 @@ describe('AppController', () => {
             const appController = app.get<AppController>(AppController)
             expect(appController.getHello()).toBe('Hello World!')
         })
+    })
+
+    afterEach(async () => {
+        await app.close()
     })
 })

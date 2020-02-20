@@ -1,10 +1,11 @@
-import { Module } from "@nestjs/common"
+import { Module } from '@nestjs/common'
 
-import AppController from "./app.controller"
-import AppService from "./app.service"
+import FileService from '@services/file'
+import AppController from './app.controller'
+import AppService from './app.service'
 
 @Module({
     controllers: [AppController],
-    providers: [AppService]
+    providers: [AppService, FileService],
 })
 export default class AppMoudle {}
