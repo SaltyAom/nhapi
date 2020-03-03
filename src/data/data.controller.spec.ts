@@ -3,20 +3,21 @@ import {
     NestFastifyApplication,
     FastifyAdapter,
 } from '@nestjs/platform-fastify'
+import { HttpModule, CacheModule, BadRequestException } from '@nestjs/common'
 
-import AppController from './app.controller'
-
-import AppService from './app.service'
+import TagController from './data.controller'
+import TagService from './data.service'
+import { Observer, Subject } from 'rxjs'
 
 describe('AppController', () => {
     let app: NestFastifyApplication
 
     beforeAll(async () => {
         const module = await Test.createTestingModule({
-            controllers: [AppController],
-            providers: [AppService],
-        })
-            .compile()
+            imports: [CacheModule.register(), HttpModule],
+            controllers: [TagController],
+            providers: [TagService],
+        }).compile()
 
         app = module.createNestApplication<NestFastifyApplication>(
             new FastifyAdapter(),
@@ -29,10 +30,9 @@ describe('AppController', () => {
             .ready()
     })
 
-    describe('getHello', () => {
-        it('should return "Hello World!"', () => {
-            const appController = app.get<AppController>(AppController)
-            expect(appController.getHello()).toBe('Hello World!')
+    describe('Get Index', () => {
+        it('should return Bad Request Exception', () => {
+            const appController = app.get<TagController>(TagController)
         })
     })
 
