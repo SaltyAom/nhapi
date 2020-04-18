@@ -54,8 +54,8 @@ export default class SearchService {
                 num_favorites,
                 upload_date,
                 tags,
-            }) =>
-                related.push(
+            }) => {
+                return related.push(
                     JSON.parse(`{
                         "id": ${id},
                         "title": {
@@ -80,7 +80,8 @@ export default class SearchService {
                         },
                         "metadata": ${JSON.stringify(filterTag(tags))}
                     }`),
-                ),
+                )
+            },
         )
 
         return related

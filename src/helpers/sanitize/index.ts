@@ -5,5 +5,5 @@
  * @param {string} param
  */
 const sanitize = (param: string | null) =>
-    param !== null ? param.replace(/\\|\/\//g, '') : param
+    param !== null ? param.replace(/\\|\/\//g, '').replace(/\"/g, '\'') : param
 export default sanitize

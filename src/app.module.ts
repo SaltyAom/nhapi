@@ -1,5 +1,6 @@
 import { Module, CacheModule, CacheInterceptor } from '@nestjs/common'
 import { APP_INTERCEPTOR } from '@nestjs/core'
+// import { GraphQLModule } from '@nestjs/graphql'
 
 import SearchModule from 'src/search'
 import DataModule from 'src/data'
@@ -15,7 +16,9 @@ const ttl = 60 * 60 * 24
         CacheModule.register({
             ttl,
             max: 1024,
-        })
+        }),
+        // GraphQLModule.forRoot()
+        // Too lazy to do this, lol
     ],
     providers: [
         {
