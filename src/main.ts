@@ -18,7 +18,7 @@ const bootstrap = async () => {
         new FastifyAdapter(),
     )
     app.register(compression)
-    app.useGlobalInterceptors(new Performance(app.get(Reflector)))
+    // app.useGlobalInterceptors(new Performance(app.get(Reflector)))
     app.useGlobalFilters(new NotFoundExceptionFilter())
     await app.listen(3000)
 }
