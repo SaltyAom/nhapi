@@ -31,7 +31,7 @@
     "@nestjs/platform-fastify": "^7.0.8",
     "apollo-server-fastify": "^2.12.0",
     "cache-manager": "^3.2.1",
-    "fastify": "^2.13.1",
+    "fastify": "^2.15.1",
     "fastify-compress": "^2.0.1",
     "graphql": "^15.0.0",
     "graphql-tools": "^5.0.0",
