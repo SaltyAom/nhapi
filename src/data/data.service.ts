@@ -23,7 +23,7 @@ export default class DataService {
         throw new BadRequestException(':id required a value')
     }
 
-    getData(id: string): Observable<ParsedDataDto[]> {
+    getData(id: string): Observable<ParsedDataDto> {
         return this.httpService
             .get(`https://nhentai.net/api/gallery/${id}`)
             .pipe(
