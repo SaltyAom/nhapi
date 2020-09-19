@@ -75,7 +75,7 @@ export default class DataService {
                 japanese: sanitize(japanese)
             },
             images: linkImage(images, media_id, {
-                includePages: false,
+                includePages: true
             }),
             info: {
                 amount: num_pages,
