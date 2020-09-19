@@ -3,9 +3,7 @@ import { NestFactory, Reflector } from '@nestjs/core'
 import AppModule from 'src/app.module'
 import NotFoundExceptionFilter from 'src/filters/NotFoundException'
 
-import Performance from '@interceptors/performance'
-
-import * as compression from 'fastify-compress'
+import compression from 'fastify-compress'
 
 import {
     FastifyAdapter,

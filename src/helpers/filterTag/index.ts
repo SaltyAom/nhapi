@@ -5,7 +5,7 @@ import { Tags, ParsedTag, FilterTag, FilteredTag } from './types'
  * @param {Tags[]} tags
  * @returns {FilteredTag}
  */
-const filterTag: FilterTag = tags => {
+const filterTag: FilterTag = (tags) => {
     let artist: string = ''
     let language: string = ''
 
@@ -13,7 +13,7 @@ const filterTag: FilterTag = tags => {
 
     const { parse } = JSON
 
-    tags.filter(tag => {
+    tags.filter((tag) => {
         const { type = '', name = '', url = '', count = 0 } = tag
 
         switch (type) {
@@ -26,6 +26,7 @@ const filterTag: FilterTag = tags => {
                     }`))
 
             case 'language':
+                if (name === 'translated') return
                 return (language = name)
 
             case 'tag':
