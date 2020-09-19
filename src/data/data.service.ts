@@ -59,38 +59,36 @@ export default class DataService {
 
     private parseData({
         id,
-        title,
+        title: { pretty, english, japanese },
         media_id,
         images,
         num_pages,
         num_favorites,
         upload_date,
         tags,
-    }: Data): ParsedDataDto[] {
-        return JSON.parse(`{
-            "id": "${id}",
-            "title": {
-                "display": "${sanitize(title.pretty)}",
-                "english": "${sanitize(title.english)}",
-                "japanese": "${sanitize(title.japanese)}"
+    }: Data): ParsedDataDto {
+        return {
+            id: +id,
+            title: {
+                display: sanitize(pretty),
+                english: sanitize(english),
+                japanese: sanitize(japanese)
             },
-            "images": ${JSON.stringify(
-                linkImage(images, media_id, {
-                    includePages: true,
-                }),
-            )},
-            "info": {
-                "amount": ${num_pages},
-                "favorites": ${num_favorites},
-                "upload": {
-                    "original": ${upload_date},
-                    "parsed": "${new Date(
-                        parseInt(`${upload_date}000`, 10),
-                    ).toLocaleDateString('en-US')}"
+            images: linkImage(images, media_id, {
+                includePages: false,
+            }),
+            info: {
+                amount: num_pages,
+                favorite: num_favorites,
+                upload: {
+                    original: upload_date,
+                    parsed: new Date(
+                        +upload_date,
+                    ).toLocaleDateString('en-US')
                 }
             },
-            "metadata": ${JSON.stringify(filterTag(tags))}
-        }`)
+            metadata: filterTag(tags)
+        }
     }
 
     private parseRelated(data: RelatedDto): ParsedRelatedDto[] {
@@ -108,30 +106,28 @@ export default class DataService {
                 tags,
             }) =>
                 related.push(
-                    JSON.parse(`{
-                        "id": ${id},
-                        "title": {
-                            "display": "${sanitize(pretty)}",
-                            "english": "${sanitize(english)}",
-                            "japanese": "${sanitize(japanese)}"
+                    {
+                        id: +id,
+                        title: {
+                            display: sanitize(pretty),
+                            english: sanitize(english),
+                            japanese: sanitize(japanese)
                         },
-                        "images": ${JSON.stringify(
-                            linkImage(images, media_id, {
-                                includePages: false,
-                            }),
-                        )},
-                        "info": {
-                            "amount": ${num_pages},
-                            "favorite": ${num_favorites},
-                            "upload": {
-                                "original": ${upload_date},
-                                "parsed": "${new Date(
-                                    parseInt(`${upload_date}000`, 10),
-                                ).toLocaleDateString('en-US')}"
+                        images: linkImage(images, media_id, {
+                            includePages: false,
+                        }),
+                        info: {
+                            amount: num_pages,
+                            favorite: num_favorites,
+                            upload: {
+                                original: upload_date,
+                                parsed: new Date(
+                                    +upload_date,
+                                ).toLocaleDateString('en-US')
                             }
                         },
-                        "metadata": ${JSON.stringify(filterTag(tags))}
-                    }`),
+                        metadata: filterTag(tags)
+                    },
                 ),
         )
 

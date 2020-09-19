@@ -6,10 +6,10 @@ import { Tags, ParsedTag, FilterTag, FilteredTag } from './types'
  * @returns {FilteredTag}
  */
 const filterTag: FilterTag = (tags) => {
-    let artist: string = ''
-    let language: string = ''
+    let artist = ''
+    let language = ''
 
-    const parsedTag: FilteredTag[] = []
+    const parsedTag: ParsedTag[] = []
 
     const { parse } = JSON
 
@@ -43,11 +43,11 @@ const filterTag: FilterTag = (tags) => {
         }
     })
 
-    return parse(`{
-            "artist": ${JSON.stringify(artist)},
-            "tags": ${JSON.stringify(parsedTag)},
-            "language": "${language}"
-        }`)
+    return {
+            artist,
+            tags: parsedTag,
+            language
+        }
 }
 
 export { Tags, ParsedTag, FilteredTag }

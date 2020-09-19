@@ -31,8 +31,8 @@ export interface ParsedRelatedDto {
         amount: number
         favorite: number
         upload: {
-            original: string
-            parse: string
+            original: number
+            parsed: string
         }
     }
     metadata: FilteredTag

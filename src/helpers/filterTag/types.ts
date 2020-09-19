@@ -36,9 +36,9 @@ export interface ParsedTag {
  * @property {(string | null)} language Displayed language - Return null on undefined
  */
 export interface FilteredTag {
-    artist: ParsedTag
+    artist: string
     tags: ParsedTag[]
     language: string | null
 }
 
-export type FilterTag = (tag: Tags[]) => FilterTag[]
+export type FilterTag = (tag: Tags[]) => FilteredTag
