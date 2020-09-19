@@ -6,6 +6,6 @@ export default class DynamicCache extends CacheInterceptor {
 
         if (params.id === 'favicon.ico') return undefined
 
-        return JSON.stringify(context.switchToHttp().getRequest().params)
+        return context.switchToHttp().getRequest().url
     }
 }
