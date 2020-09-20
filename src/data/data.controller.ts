@@ -4,6 +4,7 @@ import {
     Param,
     UsePipes,
     UseInterceptors,
+    CacheTTL
 } from '@nestjs/common'
 
 import ParseSingleParam from '@pipes/parseSingleParam'
@@ -27,6 +28,7 @@ export default class AppController {
     @UsePipes(IDValidation)
     @UsePipes(ParseSingleParam)
     @UseInterceptors(DynamicCache)
+    @CacheTTL(86400)
     getData(@Param() id) {
         return this.dataService.getData(id)
     }
@@ -35,6 +37,7 @@ export default class AppController {
     @EnablePerformanceLogging()
     @UsePipes(ParseSingleParam)
     @UseInterceptors(DynamicCache)
+    @CacheTTL(86400)
     getRelated(@Param() id) {
         return this.dataService.getRelate(id)
     }
