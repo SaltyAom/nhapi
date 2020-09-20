@@ -6,7 +6,7 @@ import SearchModule from 'src/search'
 import DataModule from 'src/data'
 import StaticModule from 'src/static'
 
-const ttl = 60 * 60 * 24
+const ttl = 3600
 
 @Module({
     imports: [

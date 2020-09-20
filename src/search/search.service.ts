@@ -32,7 +32,7 @@ export default class SearchService {
                     throw new NotFoundException('')
                 }),
                 map((response: AxiosResponse<SearchDto>) => response.data),
-                map(data => {
+                map((data) => {
                     if (!data.result.length)
                         throw new NotFoundException(`${search} not found`)
 
