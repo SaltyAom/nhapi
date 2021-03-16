@@ -34,7 +34,7 @@
                 },
                 {
                     "key": "Accept-Encoding",
-                    "value": "br"
+                    "value": "*"
                 },
                 {
                     "key": "Vary",
