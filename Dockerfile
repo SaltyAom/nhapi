@@ -2,7 +2,8 @@ FROM node:16-alpine as builder
 
 WORKDIR /usr/app
 
-COPY package.json yarn.lock .
+COPY package.json .
+COPY yarn.lock .
 
 RUN yarn --frozen-lockfile
 
@@ -18,7 +19,8 @@ WORKDIR /usr/app
 RUN apk --no-cache add curl bash
 RUN curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | bash -s -- -b /usr/local/bin
 
-COPY package.json yarn.lock .
+COPY package.json .
+COPY yarn.lock .
 
 RUN yarn --frozen-lockfile --production
 RUN /usr/local/bin/node-prune
