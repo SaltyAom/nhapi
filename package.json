@@ -1,8 +1,7 @@
 {
-  "name": "nest-typescript-starter",
-  "private": true,
+  "name": "nhapi",
   "version": "1.1.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Legacy opener api",
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
